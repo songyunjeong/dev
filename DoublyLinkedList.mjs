@@ -1,5 +1,5 @@
 class Node {
-  constructor(data, next = null, prev) {
+  constructor(data, next = null, prev = null) {
     this.data = data;
     this.next = next;
     this.prev = prev;
@@ -49,6 +49,7 @@ class DoublyLinkedList {
       }
       this.head = newNode;
     } else if (index == this.count) {
+      // tail에 삽입하는 경우
       newNode.next = null;
       newNode.prev = this.tail;
       this.tail.next = newNode;
@@ -84,15 +85,18 @@ class DoublyLinkedList {
     if (index == 0) {
       let deletedNode = this.head;
       if (this.head.next == null) {
+        // 데이터가 1개일 때
         this.head = null;
         this.tail = null;
       } else {
+        // 데이터가 2개 이상일 때
         this.head = this.head.next;
         this.head.prev = null;
       }
       this.count--;
       return deletedNode;
     } else if (index == this.count - 1) {
+      // 마지막 노드를 제거하는 경우
       let deletedNode = this.tail;
       this.tail.prev.next = null;
       this.tail = this.tail.prev;
